@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Product xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0" name="praktikum-zertifikate-ide"
+	label="Praktikum Zertifikate IDE">
+
+	<version name="latest" label="Latest" requiredJavaVersion="21">
+
+		<!-- Basis: Eclipse IDE for Enterprise Java and Web Developers. Wichtig: Tasks werden mit xsi:type qualifiziert, Units als <requirement name="..."> 
+			angegeben – nicht als <unit id="...">. Beide Repository-URLs sind erforderlich: die EPP-Packaging-Site enthält die epp.package.*-Units, die Release-Site 
+			die übrigen Abhängigkeiten. -->
+		<setupTask xsi:type="setup.p2:P2Task" label="Eclipse JEE installieren">
+			<repository url="https://download.eclipse.org/technology/epp/packages/2024-12" />
+			<repository url="https://download.eclipse.org/releases/2024-12" />
+			<requirement name="epp.package.jee" />
+			<requirement name="org.eclipse.platform.feature.group" />
+			<requirement name="org.eclipse.rcp.feature.group" />
+		</setupTask>
+
+		<!-- Zusätzliche Plugins -->
+		<setupTask xsi:type="setup.p2:P2Task" label="Plugins installieren">
+			<!-- SonarLint -->
+			<repository url="https://binaries.sonarsource.com/SonarLint-for-Eclipse/releases/latest" />
+			<requirement name="org.sonarlint.eclipse.feature.feature.group" />
+
+			<!-- Eclipse Checkstyle Plugin -->
+			<repository url="https://checkstyle.org/eclipse-cs-update-site" />
+			<requirement name="net.sf.eclipsecs.feature.group" />
+		</setupTask>
+
+		<!-- Globale IDE-Einstellungen -->
+		<setupTask xsi:type="setup:PreferenceTask" key="/instance/org.eclipse.core.resources/encoding" value="UTF-8" />
+		<setupTask xsi:type="setup:PreferenceTask" key="/instance/org.eclipse.ui.workbench/SHOW_PROGRESS_ON_STARTUP" value="false" />
+
+	</version>
+</setup:Product>
