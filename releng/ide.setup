@@ -19,7 +19,7 @@
 		<!-- Zusätzliche Plugins -->
 		<setupTask xsi:type="setup.p2:P2Task" label="Plugins installieren">
 			<!-- SonarLint -->
-			<repository url="https://binaries.sonarsource.com/SonarLint-for-Eclipse/releases/latest" />
+			<repository url="https://eclipse-uc.sonarlint.org"/>
 			<requirement name="org.sonarlint.eclipse.feature.feature.group" />
 
 			<!-- Eclipse Checkstyle Plugin -->
